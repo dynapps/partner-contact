@@ -4,7 +4,7 @@
 {
     'name': "Deduplicate Contacts (No CRM)",
     'summary': "Partner merge wizard without dependency on CRM",
-    'author': "Camptocamp,Odoo Community Association (OCA)",
+    'author': "Camptocamp,Odoo Community Association (OCA),Dynapps",
     'license': 'AGPL-3',
     'category': 'Generic Modules/Base',
     'version': '9.0.1.0.0',
@@ -14,7 +14,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/base_partner_merge.xml',
+        'wizard/base_partner_merge.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

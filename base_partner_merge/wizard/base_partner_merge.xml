@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-
-        <record model="ir.actions.act_window" id="action_partner_deduplicate">
+<odoo>
+        <record id="action_partner_deduplicate" model="ir.actions.act_window">
             <field name="name">Deduplicate Contacts</field>
             <field name="res_model">base.partner.merge.automatic.wizard</field>
             <field name="view_type">form</field>
@@ -11,7 +9,7 @@
             <field name="context">{'active_test': False}</field>
         </record>
 
-        <record model='ir.ui.view' id='base_partner_merge_automatic_wizard_form'>
+        <record id="base_partner_merge_automatic_wizard_form" model="ir.ui.view">
             <field name='name'>base.partner.merge.automatic.wizard.form</field>
             <field name='model'>base.partner.merge.automatic.wizard</field>
             <field name='arch' type='xml'>
@@ -19,8 +17,7 @@
                     <sheet>
                         <group attrs="{'invisible': [('state', '!=', 'finished')]}" col="1">
                             <h2>There is no more contacts to merge for this request...</h2>
-                            <button name="%(action_partner_deduplicate)d" string="Deduplicate the other Contacts" class="oe_highlight"
-                            type="action"/>
+                            <button name="%(action_partner_deduplicate)d" string="Deduplicate the other Contacts" class="oe_highlight" type="action"/>
                         </group>
                         <p class="oe_grey" attrs="{'invisible': [('state', '!=', ('option'))]}">
                             Select the list of fields used to search for
@@ -74,45 +71,45 @@
                         </group>
                     </sheet>
                     <footer>
-                        <button name='merge_cb' string='Merge Contacts'
+                        <button name='action_merge' string='Merge Contacts'
                             class='oe_highlight'
                             type='object'
-                            attrs="{'invisible': [('state', 'in', ('option', 'finished' ))]}"
-                            />
-                        <button name='next_cb' string='Skip these contacts'
-                            type='object'  class='oe_link'
+                            attrs="{'invisible': [('state', 'in', ('option', 'finished' ))]}" />
+                        <button name='action_skip' string='Skip these contacts'
+                            type='object'
                             attrs="{'invisible': [('state', '!=', 'selection')]}" />
-                        <button name='start_process_cb'
+                        <button name='action_start_manual_process'
                             string='Merge with Manual Check'
                             type='object'  class='oe_highlight'
                             attrs="{'invisible': [('state', '!=', 'option')]}" />
-                        <button name='automatic_process_cb'
+                        <button name='action_start_automatic_process'
                             string='Merge Automatically'
                             type='object' class='oe_highlight'
                             confirm="Are you sure to execute the automatic merge of your contacts ?"
                             attrs="{'invisible': [('state', '!=', 'option')]}" />
-                        <button name='update_all_process_cb'
+                        <button name='action_update_all_process'
                             string='Merge Automatically all process'
                             type='object'
                             confirm="Are you sure to execute the list of automatic merges of your contacts ?"
                             attrs="{'invisible': [('state', '!=', 'option')]}" />
                         <span class="or_cancel" attrs="{'invisible': [('state', '=', 'finished')]} ">or
-                            <button name="close_cb" special="nosave" string="Cancel" type="object" class="oe_link oe_inline"/>
+                            <button special="cancel" string="Cancel" type="object" class="oe_link oe_inline"/>
                         </span>
                         <span class="or_cancel" attrs="{'invisible': [('state', '!=', 'finished')]} ">
-                            <button name="close_cb" special="nosave"
-                                string="Close"
-                                type="object"
-                                class="oe_link oe_inline"/>
+                            <button special="cancel" string="Close" type="object" class="oe_link oe_inline"/>
                         </span>
                     </footer>
                 </form>
             </field>
         </record>
 
-        <act_window id="action_partner_merge" res_model="base.partner.merge.automatic.wizard" src_model="res.partner"
-            target="new" multi="True" key2="client_action_multi" view_mode="form" name="Merge Selected Contacts"/>
-
-    </data>
-
-</openerp>
+        <act_window
+            id="action_partner_merge"
+            res_model="base.partner.merge.automatic.wizard"
+            src_model="res.partner"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            view_mode="form"
+            name="Merge Selected Contacts"/>
+</odoo>
